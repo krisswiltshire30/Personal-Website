@@ -1,6 +1,7 @@
 import * as React from "react"
 import styled from "styled-components"
 import NavOptions from "./navOptions"
+import SocialLinks from "./socialLinks"
 import { Link } from "gatsby"
 
 const Sidebar = () => {
@@ -26,12 +27,6 @@ const Sidebar = () => {
     padding: 20px;
     background-color: black;
     height: auto;
-  `
-
-  const Social = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
   `
 
   const Logo = styled.div`
@@ -69,9 +64,8 @@ const Sidebar = () => {
 
       <NavOptions/>
 
-      <Social>
-        <a href="https://twitter.com/krisswiltshire">Twitter</a>
-      </Social>
+      <SocialLinks/>
+
     </SidebarWrapper>
   )
 }
