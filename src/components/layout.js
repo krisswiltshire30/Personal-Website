@@ -1,35 +1,34 @@
 import * as React from "react"
+import styled from "styled-components"
+import Sidebar from "./sidebar"
 import { Link } from "gatsby"
 
-const Layout = ({ location, title, children }) => {
-  const rootPath = `${__PATH_PREFIX__}/`
-  const isRootPath = location.pathname === rootPath
-  let header
+const Layout = ({ children }) => {
 
-  if (isRootPath) {
-    header = (
-      <h1 className="main-heading">
-        <Link to="/">{title}</Link>
-      </h1>
-    )
-  } else {
-    header = (
-      <Link className="header-link-home" to="/">
-        {title}
-      </Link>
-    )
-  }
+  const LayoutWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+  `
+
+  const Main = styled.main`
+    margin-left: 200px;
+    padding: 20px;
+    overflow: auto;
+  `
 
   return (
-    <div className="global-wrapper" data-is-root-path={isRootPath}>
-      <header className="global-header">{header}</header>
-      <main>{children}</main>
-      <footer>
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.com">Gatsby</a>
-      </footer>
-    </div>
+    <LayoutWrapper>
+      <Sidebar />
+      <Main>
+        <header className="global-header">
+          <h1 className="main-heading">
+            <Link to="/">Kriss Wiltshire</Link>
+          </h1>
+        </header>
+        {children}
+      </Main>
+    </LayoutWrapper>
   )
 }
 
