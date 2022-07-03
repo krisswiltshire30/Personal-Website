@@ -12,8 +12,8 @@ const Layout = ({ children }) => {
   `
 
   const Main = styled.main`
-    margin-left: 200px;
-    padding: 20px;
+    padding: 30px 0 30px 0;
+    margin: 0 40px 0 240px;
     overflow: auto;
   `
 
@@ -21,11 +21,6 @@ const Layout = ({ children }) => {
     <LayoutWrapper>
       <Sidebar />
       <Main>
-        <header className="global-header">
-          <h1 className="main-heading">
-            <Link to="/">Kriss Wiltshire</Link>
-          </h1>
-        </header>
         {children}
       </Main>
     </LayoutWrapper>
