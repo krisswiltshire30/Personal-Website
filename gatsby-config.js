@@ -1,11 +1,10 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: `Kriss Wiltshire - Software Engineer`,
     author: {
       name: `Kriss Wiltshire`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      summary: `Software Engineer`
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
     siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
     social: {
       twitter: `kylemathews`,
@@ -30,9 +29,6 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.mdx`, `.md`],
-        defaultLayouts: {
-          default: require.resolve('./src/components/layout/layout.jsx'),
-        }
       },
     },
     {

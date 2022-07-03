@@ -1,7 +1,6 @@
 import * as React from "react"
 import styled from "styled-components"
 import Sidebar from "./sidebar"
-import { Link } from "gatsby"
 
 const Layout = ({ children }) => {
 

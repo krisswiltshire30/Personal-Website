@@ -9,13 +9,27 @@ const NavOptions = () => {
     flex-direction: column;
   `
 
+  const StyledLink = styled(props => <Link {...props} />)`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    color: gray;
+    text-decoration: none;
+    font-size: 1.2rem;
+    &:hover {
+      color: #ffc107;
+    }
+  `
+
   return (
     <Options>
-      <Link to="/about">About</Link>
-      <Link to="/about">Skills</Link>
-      <Link to="/about">Work</Link>
-      <Link to="/about">Blog</Link>
-      <Link to="/contact">Contact</Link>
+      <StyledLink to="/about">About</StyledLink>
+      <StyledLink to="/skills">Skills</StyledLink>
+      <StyledLink to="/work">Work</StyledLink>
+      <StyledLink to="/blog">Blog</StyledLink>
+      <StyledLink to="/contact">Contact</StyledLink>
     </Options>
   )
 }

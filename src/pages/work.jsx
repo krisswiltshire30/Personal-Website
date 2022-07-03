@@ -2,14 +2,14 @@ import * as React from "react"
 
 import Seo from "../components/seo"
 
-const Index = () => {
+const Work = () => {
 
   return (
       <>
-        <Seo title="Homepage" />
-        <h1>Homepage</h1>
+        <Seo title="My Work" />
+        <h1>Work</h1>
       </>
   )
 }
 
-export default Index
+export default Work
