@@ -9,7 +9,7 @@ const SocialLinks = () => {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 20px;
+    margin: 20px 40px 20px 40px;
   `
 
   return (
