@@ -8,14 +8,7 @@ module.exports = {
     siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
   },
   plugins: [
-    `gatsby-plugin-netlify`,
     `gatsby-plugin-image`,
-    {
-      resolve: "gatsby-plugin-netlify-cache",
-      options: {
-        cachePublic: true
-      }
-    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
