@@ -7,7 +7,6 @@ const Layout = ({ children }) => {
   const LayoutWrapper = styled.div`
     display: flex;
     flex-direction: row;
-    min-height: 100vh;
   `
 
   const Main = styled.main`
