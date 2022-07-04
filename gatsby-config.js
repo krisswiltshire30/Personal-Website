@@ -6,13 +6,16 @@ module.exports = {
       summary: `Software Engineer`
     },
     siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
-    social: {
-      twitter: `kylemathews`,
-    },
   },
   plugins: [
     `gatsby-plugin-netlify`,
     `gatsby-plugin-image`,
+    {
+      resolve: "gatsby-plugin-netlify-cache",
+      options: {
+        cachePublic: true
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

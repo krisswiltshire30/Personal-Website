@@ -6003,6 +6003,13 @@ cron-parser@^4.1.0, cron-parser@^4.2.1:
   dependencies:
     luxon "^2.4.0"
 
+cross-env@^7.0.3:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-7.0.3.tgz#865264b29677dc015ba8418918965dd232fc54cf"
+  integrity sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==
+  dependencies:
+    cross-spawn "^7.0.1"
+
 cross-fetch@3.1.4:
   version "3.1.4"
   resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.1.4.tgz#9723f3a3a247bf8b89039f3a380a9244e8fa2f39"
@@ -6028,7 +6035,7 @@ cross-spawn@^6.0.0, cross-spawn@^6.0.5:
     shebang-command "^1.2.0"
     which "^1.2.9"
 
-cross-spawn@^7.0.2, cross-spawn@^7.0.3:
+cross-spawn@^7.0.1, cross-spawn@^7.0.2, cross-spawn@^7.0.3:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"
   integrity sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==
@@ -12620,6 +12627,11 @@ netlify-onegraph-internal@0.3.1:
     graphql "16.0.0"
     node-fetch "^2.6.0"
     uuid "^8.3.2"
+
+netlify-plugin-gatsby-cache@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/netlify-plugin-gatsby-cache/-/netlify-plugin-gatsby-cache-0.3.2.tgz#f2b89c220ef7a525ce4eaac46f828507cc8f8eff"
+  integrity sha512-Ssj2af0DliY70u8MmkDN25cpDk2/jW1aVZxPdljdm17oNwAIQcB17BF86RlW0ikdQ94KGHfaJymjVUZM7K3hPA==
 
 netlify-redirect-parser@13.0.5, netlify-redirect-parser@^13.0.5:
   version "13.0.5"
