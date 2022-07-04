@@ -10,8 +10,8 @@ const Layout = ({ children }) => {
   `
 
   const Main = styled.main`
-    padding: 30px 0 30px 0;
-    margin: 0 40px 0 240px;
+    flex: 1;
+    margin-left: 200px;
     overflow: auto;
   `
 

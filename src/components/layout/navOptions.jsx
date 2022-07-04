@@ -12,6 +12,7 @@ const NavOptions = () => {
   const StyledLink = styled(props => <Link {...props} />)`
     position: relative;
     display: flex;
+    margin-top: 2px;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -19,25 +20,29 @@ const NavOptions = () => {
     color: gray;
     text-decoration: none;
     font-size: 1.2rem;
+    transition: all 0.3s ease-in-out;
     &:hover {
       color: #fff;
-      transition: all 0.3s ease-in-out;
     }
   `
 
   const LinkBackground = styled.div`
     position: absolute;
     text-align: center;
-    background-color: #949494;
-    opacity: 0.1;
+    margin-left: -60px;
+    border-top: 50px solid aqua;
+    border-right: 60px solid transparent;
+    opacity: 0.4;
     bottom: 0;
+    left: 0;
+    top: 0;
     width: 0;
-    height: 0;
+    height: 100%;
     z-index: -1;
+    transition: ease-in-out width 0.5s;
     ${StyledLink}:hover & {
-      transition: width 0.5s, height 0.1s;
-      width: 100%;
-      height: 100%;
+      transition: ease-in-out width 0.5s;
+      width: 160%;
     }
   `
 

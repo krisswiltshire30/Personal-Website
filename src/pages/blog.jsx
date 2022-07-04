@@ -7,7 +7,7 @@ const Blog = () => {
   return (
       <>
         <Seo title="Blog" />
-        <h1>Work</h1>
+        <h1>Blog</h1>
       </>
   )
 }
