@@ -15,7 +15,7 @@ const Sidebar = () => {
     width: 200px;
     height: 100%;
     position: fixed;
-    z-index: 1;
+    z-index: 9999;
     background-color: #262626;
   `
 
