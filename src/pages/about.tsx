@@ -22,6 +22,11 @@ const Content = styled.div<{
   position: absolute;
   width: calc(100vw - 200px);
   left: 200px;
+
+  @media (max-width: 768px) {
+    width: 100vw;
+    left: 0;
+  }
 `
 
 const Section = styled.section<React.HTMLAttributes<HTMLElement> & { "data-section"?: string }>`
@@ -33,6 +38,11 @@ const Section = styled.section<React.HTMLAttributes<HTMLElement> & { "data-secti
   align-items: center;
   padding: 60px;
   box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding: 24px 16px;
+    min-height: calc(100vh - 60px);
+  }
 `
 
 const Card = styled(motion.div)`
@@ -44,6 +54,10 @@ const Card = styled(motion.div)`
   padding: 56px;
   max-width: 720px;
   width: 100%;
+
+  @media (max-width: 768px) {
+    padding: 24px 20px;
+  }
 `
 
 const HeroTitle = styled(motion.h1)`
@@ -53,6 +67,10 @@ const HeroTitle = styled(motion.h1)`
   white-space: pre-line;
   line-height: 1;
   margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: 44px;
+  }
 `
 
 const Accent = styled.span`

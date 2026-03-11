@@ -81,6 +81,9 @@ const Page = styled.div`
   padding: 60px;
   max-width: 760px;
   margin: 0 auto;
+  @media (max-width: 768px) {
+    padding: 24px 16px;
+  }
 `
 
 const PostTitle = styled.h1`

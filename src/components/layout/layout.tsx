@@ -11,6 +11,11 @@ const Main = styled.main`
   flex: 1;
   margin-left: 200px;
   overflow: auto;
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+    margin-top: 60px;
+  }
 `
 
 interface LayoutProps {
