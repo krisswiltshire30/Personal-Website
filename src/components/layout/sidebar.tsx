@@ -1,5 +1,6 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import styled from "styled-components"
+import { motion, AnimatePresence } from "framer-motion"
 import NavOptions from "./navOptions"
 import SocialLinks from "./socialLinks"
 import { Link } from "gatsby"
@@ -94,31 +95,40 @@ const Hamburger = styled.button<React.ButtonHTMLAttributes<HTMLButtonElement>>`
   }
 `
 
-const Bar = styled.span`
+const Bar = styled.span<{ open?: boolean; index?: number }>`
   display: block;
   width: 24px;
   height: 2px;
   background: #fff;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+
+  ${p => p.open && p.index === 0 && `transform: translateY(7px) rotate(45deg);`}
+  ${p => p.open && p.index === 1 && `opacity: 0;`}
+  ${p => p.open && p.index === 2 && `transform: translateY(-7px) rotate(-45deg);`}
 `
 
-const MobileMenu = styled.div<React.HTMLAttributes<HTMLDivElement> & { open: boolean }>`
+const Backdrop = styled.div<React.HTMLAttributes<HTMLDivElement>>`
   display: none;
-
   @media (max-width: 768px) {
-    display: ${p => p.open ? "flex" : "none"};
+    display: block;
     position: fixed;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    background: #262626;
-    flex-direction: column;
-    z-index: 9998;
-    padding-bottom: 16px;
+    inset: 0;
+    z-index: 9997;
   }
 `
 
 const Sidebar = () => {
   const [menuOpen, setMenuOpen] = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!menuOpen) return
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false)
+    }
+    window.addEventListener("keydown", handleKey)
+    return () => window.removeEventListener("keydown", handleKey)
+  }, [menuOpen])
 
   return (
     <>
@@ -144,16 +154,40 @@ const Sidebar = () => {
         </DesktopOnly>
 
         <Hamburger onClick={() => setMenuOpen(o => !o)} aria-label="Toggle menu">
-          <Bar />
-          <Bar />
-          <Bar />
+          <Bar open={menuOpen} index={0} />
+          <Bar open={menuOpen} index={1} />
+          <Bar open={menuOpen} index={2} />
         </Hamburger>
       </SidebarWrapper>
 
-      <MobileMenu open={menuOpen} onClick={() => setMenuOpen(false)}>
-        <NavOptions />
-        <SocialLinks />
-      </MobileMenu>
+      <AnimatePresence>
+        {menuOpen && (
+          <>
+            <Backdrop onClick={() => setMenuOpen(false)} />
+            <motion.div
+              ref={menuRef}
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              style={{
+                position: "fixed",
+                top: 60,
+                left: 0,
+                width: "100%",
+                background: "#262626",
+                flexDirection: "column",
+                zIndex: 9998,
+                paddingBottom: 16,
+                display: "flex",
+              }}
+            >
+              <NavOptions />
+              <SocialLinks />
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   )
 }
