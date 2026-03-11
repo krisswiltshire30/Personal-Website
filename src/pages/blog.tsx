@@ -6,6 +6,7 @@ import Seo from "../components/seo"
 const Page = styled.div`
   padding: 60px;
   max-width: 800px;
+  margin: 0 auto;
 `
 
 const PageTitle = styled.h1`

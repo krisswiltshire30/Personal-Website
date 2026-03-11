@@ -80,6 +80,7 @@ const PostGlobalStyle = createGlobalStyle`
 const Page = styled.div`
   padding: 60px;
   max-width: 760px;
+  margin: 0 auto;
 `
 
 const PostTitle = styled.h1`

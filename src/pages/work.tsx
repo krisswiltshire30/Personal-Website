@@ -5,6 +5,7 @@ import Seo from "../components/seo"
 const Page = styled.div`
   padding: 60px;
   max-width: 900px;
+  margin: 0 auto;
 `
 
 const PageTitle = styled.h1`
@@ -132,7 +133,6 @@ const jobs: JobEntry[] = [
       "Led frontend infrastructure using React, Gatsby, and GraphQL for an international youth platform serving 50K+ users across 15 countries",
       "Optimised GraphQL data retrieval patterns, reducing API response times by 35%",
       "Managed CI/CD via Netlify achieving 99.8% uptime and 3× daily deployment frequency",
-      "Mentored 2 junior developers — both promoted within 12 months through structured code review and pair programming",
     ],
   },
   {
@@ -182,7 +182,9 @@ const Work = () => {
           <Job key={job.company}>
             <JobHeader>
               <JobTitle>{job.title}</JobTitle>
-              <JobMeta>{job.company} · {job.period}</JobMeta>
+              <JobMeta>
+                {job.company} · {job.period}
+              </JobMeta>
             </JobHeader>
             <BulletList>
               {job.bullets.map((b, i) => (

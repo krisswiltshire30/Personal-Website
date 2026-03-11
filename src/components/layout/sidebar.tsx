@@ -53,7 +53,7 @@ const Sidebar = () => {
       <Header>
         <Logo>
           <Link to="/">
-            <LogoImg src="https://picsum.photos/seed/picsum/200" alt="logo" />
+            <LogoImg src="/avatar.png" alt="Kriss Wiltshire" />
           </Link>
         </Logo>
         <Title>Kriss Wiltshire</Title>

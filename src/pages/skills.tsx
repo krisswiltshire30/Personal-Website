@@ -5,6 +5,7 @@ import Seo from "../components/seo"
 const Page = styled.div`
   padding: 60px;
   max-width: 900px;
+  margin: 0 auto;
 `
 
 const PageTitle = styled.h1`
@@ -31,7 +32,7 @@ const Grid = styled.div`
 const Card = styled.div`
   background: #1a1a1a;
   border: 1px solid #333;
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 28px;
 `
 
@@ -62,6 +63,13 @@ const SectionHeading = styled.h2`
   color: #fff;
   font-size: 24px;
   margin: 0 0 24px 0;
+`
+
+const SpecialtyCard = styled.div`
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 28px;
 `
 
 const SpecialtyList = styled.ul`
@@ -139,11 +147,13 @@ const Skills = () => {
       </Grid>
 
       <SectionHeading>What I specialise in</SectionHeading>
-      <SpecialtyList>
-        {specialties.map(s => (
-          <SpecialtyItem key={s}>{s}</SpecialtyItem>
-        ))}
-      </SpecialtyList>
+      <SpecialtyCard>
+        <SpecialtyList>
+          {specialties.map(s => (
+            <SpecialtyItem key={s}>{s}</SpecialtyItem>
+          ))}
+        </SpecialtyList>
+      </SpecialtyCard>
     </Page>
   )
 }
