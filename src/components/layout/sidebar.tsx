@@ -182,7 +182,7 @@ const Sidebar = () => {
                 display: "flex",
               }}
             >
-              <NavOptions />
+              <NavOptions onNavigate={() => setMenuOpen(false)} />
               <SocialLinks />
             </motion.div>
           </>

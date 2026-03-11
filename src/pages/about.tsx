@@ -55,6 +55,7 @@ const Card = styled(motion.div)`
   border-radius: 16px;
   padding: 56px;
   max-width: 720px;
+  opacity: 1;
   width: 100%;
 
   @media (max-width: 768px) {
