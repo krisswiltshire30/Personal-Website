@@ -29,7 +29,9 @@ const Content = styled.div<{
   }
 `
 
-const Section = styled.section<React.HTMLAttributes<HTMLElement> & { "data-section"?: string }>`
+const Section = styled.section<
+  React.HTMLAttributes<HTMLElement> & { "data-section"?: string }
+>`
   min-height: 100vh;
   width: 100%;
   display: flex;
@@ -153,12 +155,19 @@ const About = () => {
   return (
     <AboutWrapper>
       <Seo title="About" />
-      <Canvas
-        style={{ position: "fixed" }}
-        camera={{ fov: 90, position: [0, 0, 1] }}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5, ease: "easeIn" }}
+        style={{ position: "fixed", inset: 0 }}
       >
-        <Stars targetColor={starColor} />
-      </Canvas>
+        <Canvas
+          style={{ position: "fixed" }}
+          camera={{ fov: 90, position: [0, 0, 1] }}
+        >
+          <Stars targetColor={starColor} />
+        </Canvas>
+      </motion.div>
       <Content ref={ref}>
         <Section data-section="hero">
           <HeroTitle
