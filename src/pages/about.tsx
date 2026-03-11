@@ -13,7 +13,7 @@ const AboutWrapper = styled.div`
   left: 0;
 `
 
-const Content = styled.div`
+const Content = styled.div<{ children?: React.ReactNode; ref?: React.Ref<HTMLDivElement> }>`
   z-index: 1;
   position: absolute;
   width: calc(100vw - 200px);
