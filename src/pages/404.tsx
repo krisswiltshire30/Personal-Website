@@ -4,6 +4,8 @@ import { Link } from "gatsby"
 import { motion } from "framer-motion"
 import Seo from "../components/seo"
 
+export const Head = () => <Seo title="404: Not Found" />
+
 const Page = styled.div`
   min-height: 100vh;
   display: flex;
@@ -74,8 +76,7 @@ const LinkIcon = styled.span`
 const NotFoundPage = () => {
   return (
     <Page>
-      <Seo title="404: Not Found" />
-      <motion.div
+<motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}

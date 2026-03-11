@@ -2,6 +2,8 @@ import React from "react"
 import styled from "styled-components"
 import Seo from "../components/seo"
 
+export const Head = () => <Seo title="Contact" />
+
 const Page = styled.div`
   padding: 60px;
   max-width: 700px;
@@ -72,8 +74,7 @@ const Value = styled.span`
 const Contact = () => {
   return (
     <Page>
-      <Seo title="Contact" />
-      <PageTitle>Contact</PageTitle>
+<PageTitle>Contact</PageTitle>
       <Subtitle>Get in touch</Subtitle>
 
       <Intro>

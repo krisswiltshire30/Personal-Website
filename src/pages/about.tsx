@@ -4,6 +4,8 @@ import { motion } from "framer-motion"
 import { Link } from "gatsby"
 import { Canvas } from "react-three-fiber"
 import Seo from "../components/seo"
+
+export const Head = () => <Seo title="About" />
 import Stars from "../components/animations/stars"
 
 const AboutWrapper = styled.div`
@@ -155,8 +157,7 @@ const About = () => {
 
   return (
     <AboutWrapper>
-      <Seo title="About" />
-      <motion.div
+<motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5, ease: "easeIn" }}

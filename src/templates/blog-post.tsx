@@ -3,6 +3,13 @@ import styled, { createGlobalStyle } from "styled-components"
 import { Link, graphql, PageProps } from "gatsby"
 import Seo from "../components/seo"
 
+export const Head = ({ data }: PageProps<BlogPostData>) => (
+  <Seo
+    title={data.markdownRemark.frontmatter.title}
+    description={data.markdownRemark.frontmatter.description || data.markdownRemark.excerpt}
+  />
+)
+
 const PostGlobalStyle = createGlobalStyle`
   .blog-body h2 {
     color: #fff;
@@ -173,11 +180,7 @@ const BlogPostTemplate = ({ data }: PageProps<BlogPostData>) => {
   return (
     <Page>
       <PostGlobalStyle />
-      <Seo
-        title={post.frontmatter.title}
-        description={post.frontmatter.description || post.excerpt}
-      />
-      <article itemScope itemType="http://schema.org/Article">
+<article itemScope itemType="http://schema.org/Article">
         <header>
           <BackLink to="/blog">← Back to Blogs</BackLink>
           <PostTitle>{post.frontmatter.title}</PostTitle>

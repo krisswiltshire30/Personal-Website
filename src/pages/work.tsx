@@ -2,6 +2,8 @@ import React from "react"
 import styled from "styled-components"
 import Seo from "../components/seo"
 
+export const Head = () => <Seo title="Work" />
+
 const Page = styled.div`
   padding: 60px;
   max-width: 900px;
@@ -176,8 +178,7 @@ const projects: ProjectEntry[] = [
 const Work = () => {
   return (
     <Page>
-      <Seo title="My Work" />
-      <PageTitle>Work</PageTitle>
+<PageTitle>Work</PageTitle>
       <Subtitle>Experience & Projects</Subtitle>
 
       <JobList>

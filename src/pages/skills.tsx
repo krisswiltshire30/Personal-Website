@@ -2,6 +2,8 @@ import React from "react"
 import styled from "styled-components"
 import Seo from "../components/seo"
 
+export const Head = () => <Seo title="Skills" />
+
 const Page = styled.div`
   padding: 60px;
   max-width: 960px;
@@ -343,8 +345,7 @@ const specialties: Specialty[] = [
 const Skills = () => {
   return (
     <Page>
-      <Seo title="Skills" />
-      <PageTitle>Skills</PageTitle>
+<PageTitle>Skills</PageTitle>
       <Subtitle>Technologies & Specialties</Subtitle>
       <Intro>
         6+ years shipping production software across full-stack web — from Rails

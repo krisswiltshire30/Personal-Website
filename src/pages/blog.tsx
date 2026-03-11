@@ -3,6 +3,8 @@ import styled from "styled-components"
 import { Link, graphql, PageProps } from "gatsby"
 import Seo from "../components/seo"
 
+export const Head = () => <Seo title="Blog" />
+
 const Page = styled.div`
   padding: 60px;
   max-width: 800px;
@@ -97,8 +99,7 @@ const Blog = ({ data }: PageProps<BlogData>) => {
 
   return (
     <Page>
-      <Seo title="Blog" />
-      <PageTitle>Blog</PageTitle>
+<PageTitle>Blog</PageTitle>
       <Subtitle>Thoughts on engineering</Subtitle>
 
       {posts.length === 0 ? (
