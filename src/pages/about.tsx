@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { useRef, useState, useEffect } from "react"
 import styled from "styled-components"
 import { motion } from "framer-motion"
 import { Link } from "gatsby"
@@ -24,7 +24,7 @@ const Content = styled.div<{
   left: 200px;
 `
 
-const Section = styled.section`
+const Section = styled.section<React.HTMLAttributes<HTMLElement> & { "data-section"?: string }>`
   min-height: 100vh;
   width: 100%;
   display: flex;
@@ -104,8 +104,33 @@ const stagger = {
   },
 }
 
+const sectionColors: Record<string, string> = {
+  hero: "#ffffff",
+  "who-i-am": "#ffdd44",
+  background: "#aa44ff",
+  "working-with-ai": "#00ff66",
+}
+
 const About = () => {
   const ref = useRef<HTMLDivElement>(null)
+  const [starColor, setStarColor] = useState("#ffdd44")
+
+  useEffect(() => {
+    const sections = document.querySelectorAll("[data-section]")
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const key = (entry.target as HTMLElement).dataset.section ?? "hero"
+            setStarColor(sectionColors[key] ?? "#ffdd44")
+          }
+        })
+      },
+      { threshold: 0.5 }
+    )
+    sections.forEach(s => observer.observe(s))
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <AboutWrapper>
@@ -114,10 +139,10 @@ const About = () => {
         style={{ position: "fixed" }}
         camera={{ fov: 90, position: [0, 0, 1] }}
       >
-        <Stars />
+        <Stars targetColor={starColor} />
       </Canvas>
       <Content ref={ref}>
-        <Section>
+        <Section data-section="hero">
           <HeroTitle
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -131,7 +156,7 @@ const About = () => {
           </HeroTitle>
         </Section>
 
-        <Section>
+        <Section data-section="who-i-am">
           <Card
             variants={stagger}
             initial="hidden"
@@ -162,7 +187,7 @@ const About = () => {
           </Card>
         </Section>
 
-        <Section>
+        <Section data-section="background">
           <Card
             variants={stagger}
             initial="hidden"
@@ -201,7 +226,7 @@ const About = () => {
           </Card>
         </Section>
 
-        <Section>
+        <Section data-section="working-with-ai">
           <Card
             variants={stagger}
             initial="hidden"
