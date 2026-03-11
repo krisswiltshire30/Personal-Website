@@ -1,14 +1,147 @@
 import React from "react"
+import styled, { createGlobalStyle } from "styled-components"
 import { Link, graphql, PageProps } from "gatsby"
-import Bio from "../components/bio"
 import Seo from "../components/seo"
 
-interface BlogPostData {
-  site: {
-    siteMetadata: {
-      title: string
-    }
+const PostGlobalStyle = createGlobalStyle`
+  .blog-body h2 {
+    color: #fff;
+    font-size: 22px;
+    margin: 40px 0 16px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #333;
   }
+  .blog-body p {
+    color: #ccc;
+    font-size: 17px;
+    line-height: 1.8;
+    margin: 0 0 20px 0;
+  }
+  .blog-body strong {
+    color: #fff;
+  }
+  .blog-body em {
+    color: #aaa;
+  }
+  .blog-body a {
+    color: aqua;
+    text-decoration: none;
+  }
+  .blog-body a:hover {
+    text-decoration: underline;
+  }
+  .blog-body ul, .blog-body ol {
+    color: #ccc;
+    font-size: 17px;
+    line-height: 1.8;
+    margin: 0 0 20px 0;
+    padding-left: 24px;
+  }
+  .blog-body li {
+    margin-bottom: 8px;
+  }
+  .blog-body code {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 14px;
+    color: aqua;
+  }
+  .blog-body pre {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 24px;
+    overflow-x: auto;
+    margin: 0 0 24px 0;
+  }
+  .blog-body pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 14px;
+    color: #ccc;
+  }
+  .blog-body hr {
+    border: none;
+    border-top: 1px solid #333;
+    margin: 40px 0;
+  }
+  .blog-body blockquote {
+    border-left: 3px solid aqua;
+    margin: 0 0 24px 0;
+    padding: 4px 0 4px 24px;
+    color: #aaa;
+    font-style: italic;
+  }
+`
+
+const Page = styled.div`
+  padding: 60px;
+  max-width: 760px;
+`
+
+const PostTitle = styled.h1`
+  color: #fff;
+  font-size: 40px;
+  line-height: 1.2;
+  margin: 0 0 12px 0;
+`
+
+const PostDate = styled.p`
+  color: #666;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0 0 48px 0;
+`
+
+const Divider = styled.hr`
+  border: none;
+  border-top: 1px solid #333;
+  margin: 48px 0;
+`
+
+const BackLink = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #666;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-bottom: 48px;
+  transition: color 0.2s ease;
+  &:hover {
+    color: aqua;
+  }
+`
+
+const Nav = styled.nav`
+  margin-top: 48px;
+`
+
+const NavList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`
+
+const NavLink = styled(Link)`
+  color: aqua;
+  font-size: 15px;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+`
+
+interface BlogPostData {
   markdownRemark: {
     id: string
     excerpt: string
@@ -29,61 +162,49 @@ interface BlogPostData {
   } | null
 }
 
-const BlogPostTemplate = ({ data, location }: PageProps<BlogPostData>) => {
+const BlogPostTemplate = ({ data }: PageProps<BlogPostData>) => {
   const post = data.markdownRemark
   const { previous, next } = data
 
   return (
-    <>
+    <Page>
+      <PostGlobalStyle />
       <Seo
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
       />
-      <article
-        className="blog-post"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
+      <article itemScope itemType="http://schema.org/Article">
         <header>
-          <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
+          <BackLink to="/blog">← Back to Blogs</BackLink>
+          <PostTitle>{post.frontmatter.title}</PostTitle>
+          <PostDate>{post.frontmatter.date}</PostDate>
         </header>
         <section
+          className="blog-body"
           dangerouslySetInnerHTML={{ __html: post.html }}
           itemProp="articleBody"
         />
-        <hr />
-        <footer>
-          <Bio />
-        </footer>
+        <Divider />
       </article>
-      <nav className="blog-post-nav">
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
+      <Nav>
+        <NavList>
           <li>
             {previous && (
-              <Link to={previous.fields.slug} rel="prev">
+              <NavLink to={previous.fields.slug} rel="prev">
                 ← {previous.frontmatter.title}
-              </Link>
+              </NavLink>
             )}
           </li>
           <li>
             {next && (
-              <Link to={next.fields.slug} rel="next">
+              <NavLink to={next.fields.slug} rel="next">
                 {next.frontmatter.title} →
-              </Link>
+              </NavLink>
             )}
           </li>
-        </ul>
-      </nav>
-    </>
+        </NavList>
+      </Nav>
+    </Page>
   )
 }
 
@@ -95,11 +216,6 @@ export const pageQuery = graphql`
     $previousPostId: String
     $nextPostId: String
   ) {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     markdownRemark(id: { eq: $id }) {
       id
       excerpt(pruneLength: 160)

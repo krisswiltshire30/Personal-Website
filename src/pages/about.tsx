@@ -1,6 +1,7 @@
 import React, { useRef } from "react"
 import styled from "styled-components"
 import { motion } from "framer-motion"
+import { Link } from "gatsby"
 import { Canvas } from "react-three-fiber"
 import Seo from "../components/seo"
 import Stars from "../components/animations/stars"
@@ -13,7 +14,10 @@ const AboutWrapper = styled.div`
   left: 0;
 `
 
-const Content = styled.div<{ children?: React.ReactNode; ref?: React.Ref<HTMLDivElement> }>`
+const Content = styled.div<{
+  children?: React.ReactNode
+  ref?: React.Ref<HTMLDivElement>
+}>`
   z-index: 1;
   position: absolute;
   width: calc(100vw - 200px);
@@ -61,6 +65,17 @@ const SectionTitle = styled.h2`
   letter-spacing: 4px;
   text-transform: uppercase;
   margin: 0 0 24px 0;
+`
+
+const ReadMore = styled(Link)`
+  display: inline-block;
+  margin-top: 8px;
+  color: aqua;
+  font-size: 15px;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 `
 
 const Body = styled(motion.p)`
@@ -155,20 +170,33 @@ const About = () => {
             viewport={{ once: true, amount: 0.3 }}
           >
             <motion.div variants={fadeUp}>
-              <SectionTitle>Working with AI</SectionTitle>
+              <SectionTitle>Background</SectionTitle>
             </motion.div>
             <Body variants={fadeUp}>
-              AI tools have changed how I work — but not by replacing judgment.
-              I use AI deliberately: for high-level architecture planning,
-              exploring tradeoffs, and accelerating boilerplate. The key is
-              knowing when to drive and when to delegate.
+              I came into software engineering via a BSc in Creative Music
+              Technology at Anglia Ruskin University — where I studied audio
+              programming, digital signal processing, and human-computer
+              interaction.
             </Body>
             <Body variants={fadeUp}>
-              I put structure around it: clear prompts, consistent system
-              instructions, project-level rules (like CLAUDE.md or custom GPT
-              instructions), and code review gates so AI-generated code meets
-              the same bar as hand-written code. The result is genuine speed
-              without accumulating hidden technical debt.
+              After graduating I moved into IT, working my way up from helpdesk
+              through to network support — which gave me a solid grounding in
+              how systems actually work under the hood. From there I pivoted
+              into software engineering, completing an intensive bootcamp at
+              Makers Academy in London in 2019.
+            </Body>
+            <Body variants={fadeUp}>
+              That non-traditional path gave me a strong instinct for user
+              experience and systems thinking that I carry into every
+              engineering decision.
+            </Body>
+            <Body variants={fadeUp}>
+              Over the past 6+ years I've learned that the best engineers don't
+              just write good code — they understand why they're writing it.
+              I've sat in customer research sessions, shaped feature specs,
+              pushed back on requirements that didn't serve users, and shipped
+              things that measurably moved the needle. Technical decisions are
+              business decisions, and I've never lost sight of that.
             </Body>
           </Card>
         </Section>
@@ -181,20 +209,20 @@ const About = () => {
             viewport={{ once: true, amount: 0.3 }}
           >
             <motion.div variants={fadeUp}>
-              <SectionTitle>Background</SectionTitle>
+              <SectionTitle>Working with AI</SectionTitle>
             </motion.div>
             <Body variants={fadeUp}>
-              I came into software engineering via a BSc in Creative Music
-              Technology at Anglia Ruskin University — where I studied audio
-              programming, digital signal processing, and human-computer
-              interaction — followed by an intensive bootcamp at Makers Academy
-              in London in 2019.
+              AI hasn't replaced engineers — it's removed the friction between
+              having an idea and testing it. I use it deliberately across the
+              full development lifecycle: spiking ideas, rubber-ducking
+              architecture, planning work, and accelerating legacy migrations.
+              The craft is knowing when to reach for it and when to put it down.
             </Body>
-            <Body variants={fadeUp}>
-              That non-traditional path gave me a strong instinct for user
-              experience and systems thinking that I carry into every
-              engineering decision.
-            </Body>
+            <motion.div variants={fadeUp}>
+              <ReadMore to="/blog/using-ai-as-an-engineer/">
+                Read my full thoughts on engineering with AI →
+              </ReadMore>
+            </motion.div>
           </Card>
         </Section>
       </Content>

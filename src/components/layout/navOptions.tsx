@@ -68,7 +68,7 @@ const NavOptions = () => {
         Work
         <LinkBackground id="work" selectedOption={selectedOption}/>
       </StyledLink>
-      <StyledLink id="blog" to="/blog" activeStyle={{ backgroundColor: "#00FFFF99", color: "#fff " }} onClick={handleClick}>
+      <StyledLink id="blog" to="/blog" activeStyle={{ backgroundColor: "#00FFFF99", color: "#fff " }} partiallyActive={true} onClick={handleClick}>
         Blog
         <LinkBackground id="blog" selectedOption={selectedOption}/>
       </StyledLink>
