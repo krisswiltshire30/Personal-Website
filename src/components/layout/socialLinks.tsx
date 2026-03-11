@@ -1,17 +1,16 @@
-import * as React from "react"
+import React from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 
+const Social = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 40px 20px 40px;
+`
+
 const SocialLinks = () => {
-
-  const Social = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin: 20px 40px 20px 40px;
-  `
-
   return (
     <Social>
       <Link to="/" target="_blank">

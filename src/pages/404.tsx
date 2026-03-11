@@ -1,10 +1,8 @@
-import * as React from "react"
+import React from "react"
 import { graphql } from "gatsby"
-
 import Seo from "../components/seo"
 
 const NotFoundPage = () => {
-
   return (
     <>
       <Seo title="404: Not Found" />

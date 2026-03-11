@@ -1,17 +1,40 @@
-import * as React from "react"
-import { Link, graphql } from "gatsby"
-
+import React from "react"
+import { Link, graphql, PageProps } from "gatsby"
 import Bio from "../components/bio"
-import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-const BlogPostTemplate = ({ data, location }) => {
+interface BlogPostData {
+  site: {
+    siteMetadata: {
+      title: string
+    }
+  }
+  markdownRemark: {
+    id: string
+    excerpt: string
+    html: string
+    frontmatter: {
+      title: string
+      date: string
+      description: string
+    }
+  }
+  previous: {
+    fields: { slug: string }
+    frontmatter: { title: string }
+  } | null
+  next: {
+    fields: { slug: string }
+    frontmatter: { title: string }
+  } | null
+}
+
+const BlogPostTemplate = ({ data, location }: PageProps<BlogPostData>) => {
   const post = data.markdownRemark
-  const siteTitle = data.site.siteMetadata?.title || `Title`
   const { previous, next } = data
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <>
       <Seo
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
@@ -60,7 +83,7 @@ const BlogPostTemplate = ({ data, location }) => {
           </li>
         </ul>
       </nav>
-    </Layout>
+    </>
   )
 }
 

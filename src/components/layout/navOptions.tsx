@@ -1,4 +1,4 @@
-import React, {useState}  from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 
@@ -7,7 +7,7 @@ const Options = styled.div`
   flex-direction: column;
 `
 
-const StyledLink = styled(props => <Link {...props} />)`
+const StyledLink = styled((props: React.ComponentProps<typeof Link>) => <Link {...props} />)`
   position: relative;
   display: flex;
   margin-top: 4px;
@@ -24,8 +24,12 @@ const StyledLink = styled(props => <Link {...props} />)`
   }
 `
 
-const LinkBackground = styled.div`
-  ${console.log()}
+interface LinkBackgroundProps {
+  selectedOption: string
+  id: string
+}
+
+const LinkBackground = styled.div<LinkBackgroundProps>`
   position: absolute;
   text-align: center;
   margin-left: -60px;
@@ -46,30 +50,29 @@ const LinkBackground = styled.div`
 const NavOptions = () => {
   const [selectedOption, setSelectedOption] = useState("")
 
-
-  const handleClick = (e) => {
-    setSelectedOption(e.target.id)
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    setSelectedOption((e.currentTarget as HTMLAnchorElement).id)
   }
 
   return (
     <Options>
-      <StyledLink id="about" to="/about" activeStyle={{ backgroundColor: "#00FFFF99", color: "#fff " }} onClick={(e) => handleClick(e)} >
+      <StyledLink id="about" to="/about" activeStyle={{ backgroundColor: "#00FFFF99", color: "#fff " }} onClick={handleClick}>
         About
         <LinkBackground id="about" selectedOption={selectedOption}/>
       </StyledLink>
-      <StyledLink id="skills" to="/skills" activeStyle={{ backgroundColor: "#00FFFF99", color: "#fff " }} onClick={(e) => handleClick(e)} >
+      <StyledLink id="skills" to="/skills" activeStyle={{ backgroundColor: "#00FFFF99", color: "#fff " }} onClick={handleClick}>
         Skills
         <LinkBackground id="skills" selectedOption={selectedOption}/>
       </StyledLink>
-      <StyledLink id="work" to="/work" activeStyle={{ backgroundColor: "#00FFFF99", color: "#fff " }} onClick={(e) => handleClick(e)}>
+      <StyledLink id="work" to="/work" activeStyle={{ backgroundColor: "#00FFFF99", color: "#fff " }} onClick={handleClick}>
         Work
         <LinkBackground id="work" selectedOption={selectedOption}/>
       </StyledLink>
-      <StyledLink id="blog" to="/blog" activeStyle={{ backgroundColor: "#00FFFF99", color: "#fff " }} onClick={(e) => handleClick(e)}>
+      <StyledLink id="blog" to="/blog" activeStyle={{ backgroundColor: "#00FFFF99", color: "#fff " }} onClick={handleClick}>
         Blog
         <LinkBackground id="blog" selectedOption={selectedOption}/>
       </StyledLink>
-      <StyledLink id="contact" to="/contact" activeStyle={{ backgroundColor: "#00FFFF99", color: "#fff " }} onClick={(e) => handleClick(e)}>
+      <StyledLink id="contact" to="/contact" activeStyle={{ backgroundColor: "#00FFFF99", color: "#fff " }} onClick={handleClick}>
         Contact
         <LinkBackground id="contact" selectedOption={selectedOption}/>
       </StyledLink>

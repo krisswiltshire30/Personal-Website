@@ -49,8 +49,14 @@
     "styled-components": "^5"
   },
   "devDependencies": {
+    "@types/node": "^18.0.1",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^19.2.3",
+    "@types/react-helmet": "^6.1.11",
+    "@types/styled-components": "^5.1.36",
     "netlify-cli": "^10.7.1",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "typescript": "^5.9.3"
   },
   "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
   "keywords": [
