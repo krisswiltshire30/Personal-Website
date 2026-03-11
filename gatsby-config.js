@@ -1,4 +1,6 @@
 module.exports = {
+  // Explicit trailingSlash: v5 default is "always"; set to "never" to match v4 legacy behavior
+  trailingSlash: `never`,
   siteMetadata: {
     title: `Kriss Wiltshire - Software Engineer`,
     author: {
@@ -97,7 +99,7 @@ module.exports = {
             query: `
               {
                 allMarkdownRemark(
-                  sort: { order: DESC, fields: [frontmatter___date] },
+                  sort: { frontmatter: { date: DESC } },
                 ) {
                   nodes {
                     excerpt

@@ -1,9 +1,9 @@
 import React, { useState, useRef } from "react"
-import { useFrame } from "react-three-fiber"
+import { useFrame } from "@react-three/fiber"
 import { Points, PointMaterial } from "@react-three/drei"
 import * as random from "maath/random/dist/maath-random.esm"
 import { Points as ThreePoints, Color } from "three"
-import { GroupProps } from "react-three-fiber"
+import { GroupProps } from "@react-three/fiber"
 
 interface StarsProps extends GroupProps {
   targetColor?: string

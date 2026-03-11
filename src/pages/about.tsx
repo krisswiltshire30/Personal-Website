@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react"
 import styled from "styled-components"
 import { motion } from "framer-motion"
 import { Link } from "gatsby"
-import { Canvas } from "react-three-fiber"
+import { Canvas } from "@react-three/fiber"
 import Seo from "../components/seo"
 
 export const Head = () => <Seo title="About" />
