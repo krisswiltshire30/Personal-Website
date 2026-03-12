@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react"
+import React from "react"
 import styled from "styled-components"
 import { motion } from "framer-motion"
 import { Link } from "gatsby"
@@ -9,26 +9,19 @@ import Stars from "../components/animations/stars"
 export const Head = () => <Seo title="About" />
 
 const AboutWrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
 `
 
 const Content = styled.div`
   z-index: 1;
   position: absolute;
-  width: calc(100vw - 200px);
-  left: 200px;
-
-  @media (max-width: 768px) {
-    width: 100vw;
-    left: 0;
-  }
+  width: 100%;
+  left: 0;
 `
 
-const Section = styled.section<{ "data-section"?: string }>`
+const Section = styled.section`
   min-height: 100vh;
   width: 100%;
   display: flex;
@@ -122,64 +115,31 @@ const stagger = {
   },
 }
 
-const sectionColors: Record<string, string> = {
-  hero: "#00ffff",
-  "who-i-am": "#ff00aa",
-  background: "#0033ff",
-  "working-with-ai": "#ff0000",
-}
-
 const About = () => {
-  const ref = useRef<HTMLDivElement>(null)
-  const [starColor, setStarColor] = useState("#00ffff")
-
-  useEffect(() => {
-    const handler = () => {
-      const sections = document.querySelectorAll<HTMLElement>("[data-section]")
-      const scrollTop = document.documentElement.scrollTop
-      const mid = scrollTop + window.innerHeight / 2
-
-      let best: HTMLElement | null = null
-      let bestDist = Infinity
-
-      sections.forEach(section => {
-        const rect = section.getBoundingClientRect()
-        const sectionMid = rect.top + scrollTop + rect.height / 2
-        const dist = Math.abs(sectionMid - mid)
-        if (dist < bestDist) {
-          bestDist = dist
-          best = section
-        }
-      })
-
-      if (best) {
-        const key = (best as HTMLElement).dataset.section ?? "hero"
-        setStarColor(sectionColors[key] ?? "#ffdd44")
-      }
-    }
-
-    document.addEventListener("scroll", handler, { passive: true })
-    handler()
-    return () => document.removeEventListener("scroll", handler)
-  }, [])
-
   return (
     <AboutWrapper>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5, ease: "easeIn" }}
-        style={{ position: "fixed", inset: 0 }}
+        style={{
+          position: "fixed",
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: "200px",
+        }}
       >
         <Canvas
-          style={{ position: "fixed" }}
+          gl={{ alpha: true }}
+          style={{ background: "transparent" }}
           camera={{ fov: 90, position: [0, 0, 1] }}
         >
-          <Stars targetColor={starColor} />
+          <Stars />
         </Canvas>
       </motion.div>
-      <Content ref={ref}>
-        <Section data-section="hero">
+      <Content>
+        <Section>
           <HeroTitle
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -194,7 +154,7 @@ const About = () => {
           </HeroTitle>
         </Section>
 
-        <Section data-section="who-i-am">
+        <Section>
           <Card
             variants={stagger}
             initial="hidden"
@@ -225,7 +185,7 @@ const About = () => {
           </Card>
         </Section>
 
-        <Section data-section="background">
+        <Section>
           <Card
             variants={stagger}
             initial="hidden"
@@ -264,7 +224,7 @@ const About = () => {
           </Card>
         </Section>
 
-        <Section data-section="working-with-ai">
+        <Section>
           <Card
             variants={stagger}
             initial="hidden"
