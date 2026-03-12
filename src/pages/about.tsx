@@ -4,9 +4,9 @@ import { motion } from "framer-motion"
 import { Link } from "gatsby"
 import { Canvas } from "@react-three/fiber"
 import Seo from "../components/seo"
+import Stars from "../components/animations/stars"
 
 export const Head = () => <Seo title="About" />
-import Stars from "../components/animations/stars"
 
 const AboutWrapper = styled.div`
   width: 100vw;
@@ -16,10 +16,7 @@ const AboutWrapper = styled.div`
   left: 0;
 `
 
-const Content = styled.div<{
-  children?: React.ReactNode
-  ref?: React.Ref<HTMLDivElement>
-}>`
+const Content = styled.div`
   z-index: 1;
   position: absolute;
   width: calc(100vw - 200px);
@@ -31,9 +28,7 @@ const Content = styled.div<{
   }
 `
 
-const Section = styled.section<
-  React.HTMLAttributes<HTMLElement> & { "data-section"?: string }
->`
+const Section = styled.section<{ "data-section"?: string }>`
   min-height: 100vh;
   width: 100%;
   display: flex;
@@ -128,36 +123,49 @@ const stagger = {
 }
 
 const sectionColors: Record<string, string> = {
-  hero: "#ffffff",
-  "who-i-am": "#ffdd44",
-  background: "#aa44ff",
-  "working-with-ai": "#00ff66",
+  hero: "#00ffff",
+  "who-i-am": "#ff00aa",
+  background: "#0033ff",
+  "working-with-ai": "#ff0000",
 }
 
 const About = () => {
   const ref = useRef<HTMLDivElement>(null)
-  const [starColor, setStarColor] = useState("#ffdd44")
+  const [starColor, setStarColor] = useState("#00ffff")
 
   useEffect(() => {
-    const sections = document.querySelectorAll("[data-section]")
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const key = (entry.target as HTMLElement).dataset.section ?? "hero"
-            setStarColor(sectionColors[key] ?? "#ffdd44")
-          }
-        })
-      },
-      { threshold: 0.5 }
-    )
-    sections.forEach(s => observer.observe(s))
-    return () => observer.disconnect()
+    const handler = () => {
+      const sections = document.querySelectorAll<HTMLElement>("[data-section]")
+      const scrollTop = document.documentElement.scrollTop
+      const mid = scrollTop + window.innerHeight / 2
+
+      let best: HTMLElement | null = null
+      let bestDist = Infinity
+
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect()
+        const sectionMid = rect.top + scrollTop + rect.height / 2
+        const dist = Math.abs(sectionMid - mid)
+        if (dist < bestDist) {
+          bestDist = dist
+          best = section
+        }
+      })
+
+      if (best) {
+        const key = (best as HTMLElement).dataset.section ?? "hero"
+        setStarColor(sectionColors[key] ?? "#ffdd44")
+      }
+    }
+
+    document.addEventListener("scroll", handler, { passive: true })
+    handler()
+    return () => document.removeEventListener("scroll", handler)
   }, [])
 
   return (
     <AboutWrapper>
-<motion.div
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5, ease: "easeIn" }}
@@ -177,10 +185,11 @@ const About = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <span>Hi👋 </span>
+            <span>Hi 👋 </span>
             <br />
             <span>I'm </span>
-            <Accent>Kriss</Accent>,{"\n"}
+            <Accent>Kriss</Accent>
+            {"\n"}
             <span>Software Engineer 🤝</span>
           </HeroTitle>
         </Section>

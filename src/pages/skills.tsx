@@ -345,7 +345,7 @@ const specialties: Specialty[] = [
 const Skills = () => {
   return (
     <Page>
-<PageTitle>Skills</PageTitle>
+      <PageTitle>Skills</PageTitle>
       <Subtitle>Technologies & Specialties</Subtitle>
       <Intro>
         6+ years shipping production software across full-stack web — from Rails

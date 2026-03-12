@@ -1,17 +1,18 @@
 import React, { useState, useRef } from "react"
 import { useFrame } from "@react-three/fiber"
 import { Points, PointMaterial } from "@react-three/drei"
-import * as random from "maath/random/dist/maath-random.esm"
+import * as random from "maath/random"
 import { Points as ThreePoints, Color } from "three"
-import { GroupProps } from "@react-three/fiber"
 
-interface StarsProps extends GroupProps {
+interface StarsProps {
   targetColor?: string
 }
 
-const Stars = ({ targetColor = "#ffffff", ...props }: StarsProps) => {
+const Stars = ({ targetColor = "#ffffff" }: StarsProps) => {
   const pointsRef = useRef<ThreePoints>(null!)
-  const [sphere] = useState(() => random.inSphere(new Float32Array(3000), { radius: 2 }))
+  const [sphere] = useState(
+    () => random.inSphere(new Float32Array(3000), { radius: 2 }) as Float32Array
+  )
   const currentColor = useRef(new Color("#ffffff"))
   const targetRef = useRef(new Color("#ffffff"))
 
@@ -20,7 +21,7 @@ const Stars = ({ targetColor = "#ffffff", ...props }: StarsProps) => {
     pointsRef.current.rotation.x -= delta / 65
 
     targetRef.current.set(targetColor)
-    currentColor.current.lerp(targetRef.current, 0.03)
+    currentColor.current.lerp(targetRef.current, 0.06)
 
     const mat = (pointsRef.current as any).material
     if (mat?.color) {
@@ -30,7 +31,12 @@ const Stars = ({ targetColor = "#ffffff", ...props }: StarsProps) => {
 
   return (
     <group rotation={[0, 0, Math.PI / 10]}>
-      <Points ref={pointsRef} positions={sphere} stride={3} frustumCulled={false} {...props}>
+      <Points
+        ref={pointsRef}
+        positions={sphere}
+        stride={3}
+        frustumCulled={false}
+      >
         <PointMaterial
           transparent
           color="#ffdd44"

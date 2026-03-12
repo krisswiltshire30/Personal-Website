@@ -58,7 +58,7 @@ const Logo = styled.div`
   }
 `
 
-const LogoImg = styled.img<React.ImgHTMLAttributes<HTMLImageElement>>`
+const LogoImg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -81,7 +81,7 @@ const DesktopOnly = styled.div`
   }
 `
 
-const Hamburger = styled.button<React.ButtonHTMLAttributes<HTMLButtonElement>>`
+const Hamburger = styled.button`
   display: none;
   background: none;
   border: none;
@@ -107,7 +107,7 @@ const Bar = styled.span<{ open?: boolean; index?: number }>`
   ${p => p.open && p.index === 2 && `transform: translateY(-7px) rotate(-45deg);`}
 `
 
-const Backdrop = styled.div<React.HTMLAttributes<HTMLDivElement>>`
+const Backdrop = styled.div`
   display: none;
   @media (max-width: 768px) {
     display: block;

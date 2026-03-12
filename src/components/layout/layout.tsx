@@ -12,10 +12,12 @@ const Main = styled.main`
   flex: 1;
   margin-left: 200px;
   overflow: auto;
+  height: 100vh;
 
   @media (max-width: 768px) {
     margin-left: 0;
     margin-top: 60px;
+    height: calc(100vh - 60px);
   }
 `
 
